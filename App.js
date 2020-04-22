@@ -6,13 +6,13 @@ import Login from './containers/Login'
 import Main from './containers/Main'
 import { View } from "react-native";
 import './containers/config'
-import * as firebase from "firebase";
+import auth from '@react-native-firebase/auth';
 class App extends React.Component {
 	state={
 		screen:'Loading'
 	}
 	componentDidMount = () =>{
-		// firebase.auth().signOut()
+		// auth().signOut()
 	}
 	changeScreen = (newScreen) => {
 		// setScreen(newScreen)

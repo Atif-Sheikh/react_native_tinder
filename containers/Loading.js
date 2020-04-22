@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
-import * as firebase from "firebase";
+// import * as firebase from "firebase";
+import auth from '@react-native-firebase/auth';
 
 export default class Loading extends React.Component {
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
+    auth().onAuthStateChanged(user => {
       this.props.changeScreen(user ? 'Main' : 'SignUp')
     })
   }

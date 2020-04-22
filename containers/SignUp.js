@@ -1,7 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, View, Button ,Image,TouchableOpacity,Dimensions} from 'react-native'
-import * as firebase from "firebase";
+// import * as firebase from "firebase";
+// import firebase from 'react-native-firebase'
 // import { TouchableOpacity } from 'react-native-gesture-handler';
+import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
 
 export default class SignUp extends React.Component {
   state = { 
@@ -17,12 +20,11 @@ export default class SignUp extends React.Component {
    
     if(email != ' ', password != ' ', fName != ' ', lName != ' '){
 
-      firebase
-        .auth()
+        auth()
         .createUserWithEmailAndPassword(email, password)
         .then(user => {
-          const userUid = firebase.auth().currentUser.uid;
-          firebase.database().ref('users').child(userUid).set({fName:this.state.fName,lName:this.state.lName})
+          const userUid = auth().currentUser.uid;
+          database().ref('users').child(userUid).set({fName:this.state.fName,lName:this.state.lName})
           this.props.changeScreen('Main')
   
         })
