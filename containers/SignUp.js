@@ -24,7 +24,17 @@ export default class SignUp extends React.Component {
         .createUserWithEmailAndPassword(email, password)
         .then(user => {
           const userUid = auth().currentUser.uid;
-          database().ref('users').child(userUid).set({fName:this.state.fName,lName:this.state.lName})
+          let obj = {
+            fName:this.state.fName,
+            lName:this.state.lName,
+            match: [],
+            description:
+              'Full-time Traveller. Globe Trotter. Occasional Photographer. Part time Singer/Dancer.',
+            status: 'Online',
+            message:
+              'This is what happens when an unstoppable force meets an immovable object.',
+          }
+          database().ref('users').child(userUid).set(obj)
           this.props.changeScreen('Main')
   
         })
